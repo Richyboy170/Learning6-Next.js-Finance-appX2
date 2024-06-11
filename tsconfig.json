@@ -33,6 +33,6 @@
     ".next/types/**/*.ts",
     "app/lib/placeholder-data.js",
     "scripts/seed.js"
-  ],
+, "app/auth.ts"  ],
   "exclude": ["node_modules"]
 }

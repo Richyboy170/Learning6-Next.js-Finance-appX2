@@ -1,8 +1,8 @@
-"use client";
+// "use client";
 
-import Link from "next/link";
-import { usePathname } from 'next/navigation';
-import clsx from 'clsx';
+// import Link from "next/link";
+// import { usePathname } from 'next/navigation';
+// import clsx from 'clsx';
 
 import CardWrapper from '@/app/ui/dashboard/cards';
 import RevenueChart from '@/app/ui/dashboard/revenue-chart';
@@ -12,9 +12,14 @@ import { fetchCardData } from '@/app/lib/data';
 import { Suspense } from 'react';
 import { RevenueChartSkeleton, LatestInvoicesSkeleton, CardsSkeleton } from '@/app/ui/skeletons';
 
+import { Metadata } from 'next';
+ 
+export const metadata: Metadata = {
+  title: 'Dashboard',
+};
  
 export default async function Page() {
-  const pathname = usePathname();
+  // const pathname = usePathname();
   const { numberOfInvoices, numberOfCustomers, totalPaidInvoices, totalPendingInvoices } = await fetchCardData();
   return (
     <main>
@@ -33,15 +38,17 @@ export default async function Page() {
         <Suspense fallback={<LatestInvoicesSkeleton />}>
           <LatestInvoices />
         </Suspense>
+        
+        {/* before changed to dynamic rendering in separated block */}
         {/* <LatestInvoices latestInvoices={latestInvoices} /> */}
       </div>
-      <div>  
+      {/* <div>  
       <p>Dashboard Page</p>
       <Link href="/dashboard/customers"
       className={clsx( "text-blue-600" , { "text-green-600" : pathname === "/dashboard" }, )}>
         <p>customers page</p></Link>
       <Link href="/dashboard/invoices"><p>invoices page</p></Link>
-      </div>
+      </div> */}
     </main>
   );
 }
